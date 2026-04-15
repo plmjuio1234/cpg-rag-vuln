@@ -1,0 +1,13 @@
+torch
+torch-geometric
+transformers
+qdrant-client
+pyyaml
+numpy
+pandas
+scikit-learn
+tqdm
+pytest
+ruff
+black
+jsonschema
