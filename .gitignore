@@ -4,8 +4,11 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 
+checkpoints
 checkpoints/
+data
 data/
+results
 results/
 
 *.pyc
