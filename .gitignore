@@ -4,12 +4,12 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 
-checkpoints
-checkpoints/
-data
-data/
-results
-results/
+checkpoints/*
+!checkpoints/.gitkeep
+data/*
+!data/.gitkeep
+results/*
+!results/.gitkeep
 
 *.pyc
 *.pyo
