@@ -1,0 +1,45 @@
+specVersion: "1.0.0"
+document:
+  id: agent_contract
+  title: AI Agent Consumption Contract
+  language: ko
+
+rules:
+  - id: AC-001
+    rule: docs/spec/*.yaml is authoritative, markdown is explanatory
+  - id: AC-002
+    rule: every actionable requirement must have stable id and acceptance scenario
+  - id: AC-003
+    rule: no TBD or ambiguous words (fast, scalable, maybe) in required fields
+  - id: AC-004
+    rule: all references must resolve to existing IDs
+  - id: AC-005
+    rule: any schema change requires specVersion bump
+
+requiredInputFiles:
+  - docs/spec/manifest.yaml
+  - docs/spec/domain.yaml
+  - docs/spec/workflows.yaml
+  - docs/spec/interfaces.yaml
+  - docs/spec/data.yaml
+  - docs/spec/quality.yaml
+  - docs/spec/traceability.yaml
+
+executionOrder:
+  - ValidateDataBaseline
+  - BuildPyGFromCPG
+  - BuildEmbeddings
+  - IndexVectorsToQdrant
+  - RunHybridInference
+
+acceptancePolicy:
+  mustPassGates:
+    - G-D1
+    - G-D2
+    - G-D3
+    - G-D4
+  blockingFailures:
+    - SPLIT_OVERLAP
+    - SPLIT_MISSING_PATH
+    - VECTOR_DIM_MISMATCH
+    - VECTOR_VALUE_INVALID

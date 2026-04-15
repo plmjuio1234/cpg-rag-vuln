@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Example flow from CPG summary to retrieved neighbors and verifier input</title>
+  <desc id="desc">A compact architecture diagram showing how a target CPG produces a structural summary, retrieves top-k neighbors, and feeds an LLM verifier for the final decision in a cleaner academic layout.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,12 L10,6 z" fill="#4b5563"/>
+    </marker>
+    <style><![CDATA[
+      .bg { fill: #f5f6f8; }
+      .page { fill: #fbfbfc; stroke: #d5d9de; stroke-width: 2; }
+      .section { fill: #f8f9fb; stroke: #d6dae0; stroke-width: 1.8; }
+      .sectionTitle { font-family: 'DejaVu Sans', 'Liberation Sans', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #4b5563; }
+      .caption { font-family: 'DejaVu Sans', 'Liberation Sans', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; fill: #6b7280; }
+      .module { fill: #ffffff; stroke: #5b6472; stroke-width: 2; }
+      .moduleTitle { font-family: 'DejaVu Serif', Georgia, serif; font-size: 21px; font-weight: 700; fill: #1f2937; }
+      .moduleMeta { font-family: 'DejaVu Sans', 'Liberation Sans', sans-serif; font-size: 13px; fill: #556070; }
+      .edge { fill: none; stroke: #4b5563; stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round; marker-end: url(#arrow); }
+      .edgeLabel { fill: #ffffff; stroke: #d3d7dd; stroke-width: 1.1; }
+      .edgeText { font-family: 'DejaVu Sans', 'Liberation Sans', sans-serif; font-size: 12.5px; font-weight: 700; fill: #4b5563; }
+      .tileGraph { fill: #edf2ee; }
+      .tileRetrieval { fill: #f5efe7; }
+      .tileVerify { fill: #f4eded; }
+      .tileVerdict { fill: #eaf0f6; }
+      .icon { fill: none; stroke: #374151; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+    ]]></style>
+  </defs>
+
+  <rect class="bg" width="1280" height="720"/>
+  <rect class="page" x="56" y="56" width="1168" height="608" rx="24"/>
+
+  <text x="96" y="96" class="caption">Verifier evidence composition</text>
+
+  <rect class="section" x="86" y="160" width="410" height="398" rx="18"/>
+  <text x="110" y="192" class="sectionTitle">Evidence Inputs</text>
+
+  <rect class="section" x="556" y="160" width="638" height="398" rx="18"/>
+  <text x="580" y="192" class="sectionTitle">Verifier Flow</text>
+
+  <path class="edge" d="M276 332 L276 392"/>
+  <path class="edge" d="M426 276 C520 276 568 292 654 320"/>
+  <path class="edge" d="M426 448 C530 448 574 392 654 352"/>
+  <path class="edge" d="M829 396 L829 454"/>
+
+  <g>
+    <rect class="module" x="126" y="220" width="300" height="112" rx="16"/>
+    <rect class="tileGraph" x="154" y="248" width="52" height="52" rx="12"/>
+    <path class="icon" d="M168 260l12 10 12-14 10 18"/>
+    <circle class="icon" cx="168" cy="260" r="3"/>
+    <circle class="icon" cx="180" cy="270" r="3"/>
+    <circle class="icon" cx="192" cy="256" r="3"/>
+    <circle class="icon" cx="202" cy="274" r="3"/>
+    <text x="286" y="278" text-anchor="middle" class="moduleTitle">Target CPG</text>
+    <text x="286" y="300" text-anchor="middle" class="moduleMeta">graph summary</text>
+  </g>
+
+  <g>
+    <rect class="module" x="126" y="392" width="300" height="112" rx="16"/>
+    <rect class="tileRetrieval" x="154" y="420" width="52" height="52" rx="12"/>
+    <path class="icon" d="M166 432h18M166 440h18"/>
+    <path class="icon" d="M170 448c0-6 5-10 11-10s11 4 11 10-5 10-11 10-11-4-11-10z"/>
+    <path class="icon" d="M190 458l8 8"/>
+    <text x="286" y="450" text-anchor="middle" class="moduleTitle">Top-k Neighbors</text>
+    <text x="286" y="472" text-anchor="middle" class="moduleMeta">retrieved cases</text>
+  </g>
+
+  <g>
+    <rect class="module" x="654" y="274" width="350" height="122" rx="16"/>
+    <rect class="tileVerify" x="684" y="309" width="52" height="52" rx="12"/>
+    <path class="icon" d="M696 321h24a6 6 0 0 1 6 6v12a6 6 0 0 1-6 6h-10l-8 8v-8h-6a6 6 0 0 1-6-6v-12a6 6 0 0 1 6-6z"/>
+    <path class="icon" d="M706 335l4 4 8-10"/>
+    <text x="840" y="332" text-anchor="middle" class="moduleTitle">LLM Verifier</text>
+    <text x="840" y="354" text-anchor="middle" class="moduleMeta">grounded decision</text>
+  </g>
+
+  <g>
+    <rect class="module" x="719" y="454" width="220" height="92" rx="16"/>
+    <rect class="tileVerdict" x="807" y="468" width="44" height="44" rx="11"/>
+    <path class="icon" d="M829 476l10 4v10c0 8-5 14-10 18-5-4-10-10-10-18v-10z"/>
+    <path class="icon" d="M823 490l4 4 8-10"/>
+    <text x="829" y="526" text-anchor="middle" class="moduleTitle">Final Verdict</text>
+    <text x="829" y="544" text-anchor="middle" class="moduleMeta">safe / vulnerable</text>
+  </g>
+
+  <g>
+    <rect class="edgeLabel" x="216" y="346" width="120" height="26" rx="13"/>
+    <text x="276" y="363" text-anchor="middle" class="edgeText">query top-k</text>
+  </g>
+
+  <g>
+    <rect class="edgeLabel" x="516" y="246" width="120" height="26" rx="13"/>
+    <text x="576" y="263" text-anchor="middle" class="edgeText">build summary</text>
+  </g>
+
+  <g>
+    <rect class="edgeLabel" x="546" y="414" width="124" height="26" rx="13"/>
+    <text x="608" y="431" text-anchor="middle" class="edgeText">attach evidence</text>
+  </g>
+
+  <g>
+    <rect class="edgeLabel" x="761" y="410" width="136" height="26" rx="13"/>
+    <text x="829" y="427" text-anchor="middle" class="edgeText">verify decision</text>
+  </g>
+</svg>

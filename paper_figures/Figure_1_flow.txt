@@ -1,0 +1,44 @@
+Figure 1 flow
+
+Sections
+- Data Ingestion
+- Structure Learning
+- Evidence Retrieval
+- Decision Verificationz
+
+Modules
+1. Raw Sample
+2. CPG Builder
+3. CodeBERT (optional)
+4. PyG Graph
+5. GNN Encoder
+6. Vector Retrieval
+7. LLM Verifier
+
+Main flow
+Raw Sample -> CPG Builder -> PyG Graph -> GNN Encoder -> Vector Retrieval -> LLM Verifier
+
+Supporting flow
+- Raw Sample -> CodeBERT
+- CodeBERT -> GNN Encoder
+- CPG Builder -> LLM Verifier
+- GNN Encoder -> LLM Verifier
+
+Edge labels
+- build graph
+- convert PyG
+- encode tokens
+- augment features
+- learn signal
+- index embedding
+- retrieve neighbors
+- summarize structure
+- pass anchor score
+
+Interpretation
+- Raw code is converted into a code property graph.
+- The graph is transformed into a PyG representation and encoded by the GNN.
+- Optional CodeBERT features can augment the structure-learning stage.
+- Learned embeddings are indexed for neighbor retrieval.
+- Retrieved evidence and structural signals are passed to the LLM verifier.
+- The LLM verifier produces the final decision.

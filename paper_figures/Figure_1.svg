@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Overall architecture of the proposed vulnerability detection system</title>
+  <desc id="desc">A publication-style architecture diagram showing raw samples, CPG construction, PyG conversion, GNN encoding, optional CodeBERT augmentation, vector retrieval, and LLM verification in a cleaner ordered layout.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,12 L10,6 z" fill="#4b5563"/>
+    </marker>
+    <style><![CDATA[
+      .bg { fill: #f5f6f8; }
+      .page { fill: #fbfbfc; stroke: #d5d9de; stroke-width: 2; }
+      .section { fill: #f8f9fb; stroke: #d6dae0; stroke-width: 1.8; }
+      .sectionTitle { font-family: 'DejaVu Sans', 'Liberation Sans', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; fill: #4b5563; }
+      .caption { font-family: 'DejaVu Sans', 'Liberation Sans', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; fill: #6b7280; }
+      .module { fill: #ffffff; stroke: #5b6472; stroke-width: 2; }
+      .moduleOptional { fill: #ffffff; stroke: #5b6472; stroke-width: 2; stroke-dasharray: 8 6; }
+      .moduleTitle { font-family: 'DejaVu Serif', Georgia, serif; font-size: 20px; font-weight: 700; fill: #1f2937; }
+      .moduleMeta { font-family: 'DejaVu Sans', 'Liberation Sans', sans-serif; font-size: 13px; fill: #556070; }
+      .edge { fill: none; stroke: #4b5563; stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round; marker-end: url(#arrow); }
+      .edgeOptional { fill: none; stroke: #6b7280; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 8 6; marker-end: url(#arrow); }
+      .edgeLabel { fill: #ffffff; stroke: #d3d7dd; stroke-width: 1.1; }
+      .edgeText { font-family: 'DejaVu Sans', 'Liberation Sans', sans-serif; font-size: 12.5px; font-weight: 700; fill: #4b5563; }
+      .tileData { fill: #eaf0f6; }
+      .tileGraph { fill: #edf2ee; }
+      .tilePyG { fill: #eef1f4; }
+      .tileSem { fill: #f2f1eb; }
+      .tileRetrieval { fill: #f5efe7; }
+      .tileVerify { fill: #f4eded; }
+      .icon { fill: none; stroke: #374151; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+    ]]></style>
+  </defs>
+
+  <rect class="bg" width="1280" height="720"/>
+  <rect class="page" x="44" y="42" width="1192" height="636" rx="24"/>
+
+  <text x="84" y="82" class="caption">CPG-guided hybrid detection architecture</text>
+
+  <rect class="section" x="74" y="250" width="176" height="194" rx="18"/>
+  <text x="98" y="282" class="sectionTitle">Data Ingestion</text>
+
+  <rect class="section" x="286" y="150" width="520" height="410" rx="18"/>
+  <text x="310" y="182" class="sectionTitle">Structure Learning</text>
+
+  <rect class="section" x="842" y="182" width="330" height="170" rx="18"/>
+  <text x="866" y="214" class="sectionTitle">Evidence Retrieval</text>
+
+  <rect class="section" x="842" y="400" width="330" height="170" rx="18"/>
+  <text x="866" y="432" class="sectionTitle">Decision Verification</text>
+
+  <path class="edge" d="M232 348 C268 348 284 296 322 282"/>
+  <path class="edge" d="M412 334 L412 396"/>
+  <path class="edge" d="M502 448 L566 448"/>
+  <path class="edge" d="M746 448 C818 448 852 292 909 268"/>
+  <path class="edge" d="M1007 316 L1007 438"/>
+  <path class="edge" d="M502 282 C700 282 760 486 909 486"/>
+  <path class="edge" d="M746 448 C820 448 846 486 909 486"/>
+  <path class="edgeOptional" d="M232 322 C372 230 456 230 566 258"/>
+  <path class="edgeOptional" d="M656 322 L656 396"/>
+
+  <g>
+    <rect class="module" x="92" y="298" width="140" height="100" rx="16"/>
+    <rect class="tileData" x="138" y="312" width="48" height="48" rx="12"/>
+    <path class="icon" d="M150 322h22l8 8v20h-30z"/>
+    <path class="icon" d="M172 322v8h8"/>
+    <path class="icon" d="M156 338h18M156 348h18"/>
+    <text x="162" y="382" text-anchor="middle" class="moduleTitle">Raw Sample</text>
+    <text x="162" y="400" text-anchor="middle" class="moduleMeta">code + label</text>
+  </g>
+
+  <g>
+    <rect class="module" x="322" y="230" width="180" height="104" rx="16"/>
+    <rect class="tileGraph" x="388" y="244" width="48" height="48" rx="12"/>
+    <path class="icon" d="M402 256l10 8 12-12 10 16"/>
+    <circle class="icon" cx="402" cy="256" r="3"/>
+    <circle class="icon" cx="412" cy="264" r="3"/>
+    <circle class="icon" cx="424" cy="252" r="3"/>
+    <circle class="icon" cx="434" cy="268" r="3"/>
+    <text x="412" y="306" text-anchor="middle" class="moduleTitle">CPG Builder</text>
+    <text x="412" y="324" text-anchor="middle" class="moduleMeta">AST / CFG / PDG</text>
+  </g>
+
+  <g>
+    <rect class="moduleOptional" x="566" y="230" width="180" height="92" rx="16"/>
+    <rect class="tileSem" x="632" y="242" width="48" height="48" rx="12"/>
+    <path class="icon" d="M650 252l-8 14 8 14"/>
+    <path class="icon" d="M662 252l8 14-8 14"/>
+    <path class="icon" d="M652 266h8M652 276h8"/>
+    <text x="656" y="300" text-anchor="middle" class="moduleTitle">CodeBERT</text>
+    <text x="656" y="316" text-anchor="middle" class="moduleMeta">optional</text>
+  </g>
+
+  <g>
+    <rect class="module" x="322" y="396" width="180" height="104" rx="16"/>
+    <rect class="tilePyG" x="388" y="410" width="48" height="48" rx="12"/>
+    <path class="icon" d="M402 422h20v20h-20z"/>
+    <path class="icon" d="M412 422v20M402 432h20"/>
+    <text x="412" y="472" text-anchor="middle" class="moduleTitle">PyG Graph</text>
+    <text x="412" y="490" text-anchor="middle" class="moduleMeta">batched tensors</text>
+  </g>
+
+  <g>
+    <rect class="module" x="566" y="396" width="180" height="104" rx="16"/>
+    <rect class="tileGraph" x="632" y="410" width="48" height="48" rx="12"/>
+    <path class="icon" d="M644 422v24M656 428v12M668 422v24M644 434h24"/>
+    <circle class="icon" cx="644" cy="422" r="2.5"/>
+    <circle class="icon" cx="656" cy="428" r="2.5"/>
+    <circle class="icon" cx="668" cy="422" r="2.5"/>
+    <circle class="icon" cx="644" cy="446" r="2.5"/>
+    <circle class="icon" cx="656" cy="440" r="2.5"/>
+    <circle class="icon" cx="668" cy="446" r="2.5"/>
+    <text x="656" y="472" text-anchor="middle" class="moduleTitle">GNN Encoder</text>
+    <text x="656" y="490" text-anchor="middle" class="moduleMeta">graph embedding</text>
+  </g>
+
+  <g>
+    <rect class="module" x="909" y="220" width="196" height="96" rx="16"/>
+    <rect class="tileRetrieval" x="983" y="234" width="48" height="48" rx="12"/>
+    <path class="icon" d="M995 246h16M995 254h16"/>
+    <path class="icon" d="M999 262c0-6 5-10 11-10s11 4 11 10-5 10-11 10-11-4-11-10z"/>
+    <path class="icon" d="M1019 272l8 8"/>
+    <text x="1007" y="290" text-anchor="middle" class="moduleTitle">Vector Retrieval</text>
+    <text x="1007" y="308" text-anchor="middle" class="moduleMeta">top-k</text>
+  </g>
+
+  <g>
+    <rect class="module" x="909" y="438" width="196" height="96" rx="16"/>
+    <rect class="tileVerify" x="983" y="452" width="48" height="48" rx="12"/>
+    <path class="icon" d="M997 464h20a6 6 0 0 1 6 6v10a6 6 0 0 1-6 6h-8l-8 8v-8h-4a6 6 0 0 1-6-6v-10a6 6 0 0 1 6-6z"/>
+    <path class="icon" d="M1007 478l4 4 8-10"/>
+    <text x="1007" y="508" text-anchor="middle" class="moduleTitle">LLM Verifier</text>
+    <text x="1007" y="526" text-anchor="middle" class="moduleMeta">final verdict</text>
+  </g>
+
+  <g>
+    <rect class="edgeLabel" x="248" y="292" width="104" height="26" rx="13"/>
+    <text x="300" y="309" text-anchor="middle" class="edgeText">build graph</text>
+  </g>
+
+  <g>
+    <rect class="edgeLabel" x="354" y="350" width="116" height="26" rx="13"/>
+    <text x="412" y="367" text-anchor="middle" class="edgeText">convert PyG</text>
+  </g>
+
+  <g>
+    <rect class="edgeLabel" x="512" y="432" width="112" height="26" rx="13"/>
+    <text x="568" y="449" text-anchor="middle" class="edgeText">learn signal</text>
+  </g>
+
+  <g>
+    <rect class="edgeLabel" x="790" y="304" width="128" height="26" rx="13"/>
+    <text x="854" y="321" text-anchor="middle" class="edgeText">index embedding</text>
+  </g>
+
+  <g>
+    <rect class="edgeLabel" x="936" y="364" width="142" height="26" rx="13"/>
+    <text x="1007" y="381" text-anchor="middle" class="edgeText">retrieve neighbors</text>
+  </g>
+
+  <g>
+    <rect class="edgeLabel" x="730" y="328" width="142" height="26" rx="13"/>
+    <text x="801" y="345" text-anchor="middle" class="edgeText">summarize structure</text>
+  </g>
+
+  <g>
+    <rect class="edgeLabel" x="770" y="506" width="124" height="26" rx="13"/>
+    <text x="832" y="523" text-anchor="middle" class="edgeText">pass anchor score</text>
+  </g>
+
+  <g>
+    <rect class="edgeLabel" x="362" y="228" width="118" height="26" rx="13"/>
+    <text x="421" y="245" text-anchor="middle" class="edgeText">encode tokens</text>
+  </g>
+
+  <g>
+    <rect class="edgeLabel" x="682" y="346" width="132" height="26" rx="13"/>
+    <text x="748" y="363" text-anchor="middle" class="edgeText">augment features</text>
+  </g>
+</svg>
